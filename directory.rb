@@ -21,11 +21,11 @@ def print_header
   puts "-------------"
 end
 def print(students)
-  students.each do |student| 
-    if student[:name].length < 12
-      puts "#{student[:name]} "
+  count = 0
+    until count > students.length
+      puts students[:name][count]
+      count += 1
     end
-  end
 end
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
