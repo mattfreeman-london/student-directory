@@ -22,7 +22,7 @@ def print_header
 end
 def print(students)
   students.each do |student| 
-    if student[:name][0] == "m"
+    if student[:name].length < 12
       puts "#{student[:name]} "
     end
   end
