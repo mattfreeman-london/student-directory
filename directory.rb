@@ -1,37 +1,36 @@
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
-  # creates an empty array
+  puts "Please enter the names of the students, then country of birth, then their favourite hobby."
+  puts "To finish, just hit return twice."
   students = []
-  # get the first name
-  name = gets.chomp
-  # while the name is not emmpty, repeat this code
+  name = gets.capitalize.chomp
+  country = gets.capitalize.chomp
+  hobby = gets.chomp
   while !name.empty? do
-    #add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name, country: country, cohort: :November, hobby: hobby}
     puts "Now we have #{students.count} students"
-    # get another name from the user
-    name = gets.chomp
+    name = gets.capitalize.chomp
+    country = gets.capitalize.chomp
+    hobby = gets.chomp
   end
-  # return the array of students
   students
 end
+
 def print_header
-  puts "Introducing the students of this cohort at Villains Academy:"
+  puts "The students of Villains Academy:"
   puts "-------------"
 end
+
 def print(students)
-  count = 0
-    until count > students.length
-      puts students[:name][count]
-      count += 1
-    end
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort, #{student[:country]}, #{student[:hobby]})"
+  end
 end
-def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+
+def print_footer(students)
+  puts "Overall, we have #{students.count} great students."
 end
-#nothing happens until we cal the methods
+
 students = input_students
 print_header
-print (students)
+print(students)
 print_footer(students)
