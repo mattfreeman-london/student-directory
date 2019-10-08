@@ -1,42 +1,37 @@
+# frozen_string_literal: true
+
 def input_students
-  puts 'Please enter the names of the students.'
-  puts 'To finish, just hit return twice.'
+  puts "Please enter the names of the students."
+  puts "To finish, just hit return twice."
+  # create an empty array
   students = []
-  name = gets.capitalize.chomp
+  # get the first name
+  name = gets.chomp
+  # while the name is not empty, repeat this code
   until name.empty?
+  # add the student hash to the array
     students << { name: name, cohort: :november }
-    if students.count == 1
-      puts "Now we have #{students.count} student."
-    elsif students.count > 1
-      puts "Now we have #{students.count} students."
-    end
-    name = gets.capitalize.chomp
+    puts "Now we have #{students.count} students."
+  # get another name from the user
+    name = gets.chomp
   end
+  # return the array of students
   students
 end
 
 def print_header
-  puts 'The students of Villains Academy are:'
-  puts '-------------'
+  puts "The students of my cohort at Makers Academy"
+  puts "-------------"
 end
 
 def print(students)
-  if students.count == 0
-    puts "There are no students enrolled."
-  end
   students.each do |student|
-    if student[:cohort].to_s == 'november'
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
+    puts "#{student[:name]}, (#{student[:cohort]} cohort)"
   end
 end
 
 def print_footer(students)
-  if students.count == 1
-    "Overall, we have #{students.count} great student."
-  else
-    puts "Overall, we have #{students.count} great students."
-  end
+  puts "Overall, we have #{students.count} great students"
 end
 
 students = input_students
