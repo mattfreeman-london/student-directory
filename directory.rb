@@ -5,7 +5,7 @@ def input_students
   name = gets.chomp
   while !name.empty? do
     students << {name: name, cohort: :november}
-      if student.count == 1
+      if students.count == 1
         puts "Now we have #{students.count} student."
       else
         puts "Now we have #{students.count} student."
