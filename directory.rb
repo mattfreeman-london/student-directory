@@ -1,24 +1,22 @@
 def input_students
-  puts "Please enter the names of the students, then which cohort they're in."
+  puts "Please enter the names of the students."
   puts "To finish, just hit return twice."
   students = []
-  name = gets.capitalize.strip
-  cohort = gets.strip.to_sym
+  name = gets.chomp
   while !name.empty? do
-    students << {name: name, cohort: cohort}
-      if students.length == 1
+    students << {name: name, cohort: :november}
+      if student.count == 1
         puts "Now we have #{students.count} student."
       else
-        puts "Now we have #{students.count} students."
+        puts "Now we have #{students.count} student."
       end
-    name = gets.capitalize.strip
-    cohort = gets.strip.to_sym
+    name = gets.chomp
   end
   students
 end
 
 def print_header
-  puts "The students of Villains Academy:"
+  puts "The students of Villains Academy are:"
   puts "-------------"
 end
 
@@ -29,8 +27,8 @@ def print(students)
 end
 
 def print_footer(students)
-  if students.count == 1
-    puts "Overall, we have #{students.count} great student."
+  if student.count == 1
+    "Overall, we have #{students.count} great student."
   else
     puts "Overall, we have #{students.count} great students."
   end
