@@ -1,10 +1,11 @@
+require 'csv'
 @students = [] # an empty array accessible to all methods
 
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list to a file."
+  puts "4. Load the list from a file."
   puts "9. Exit" # 9 because we'll be adding more items
 end
 
@@ -34,18 +35,22 @@ def process(selection)
 end
 
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts "Please enter the names of the students."
+  puts "To finish, just hit return twice."
   # get the first name
   name = STDIN.gets.chomp
-  # while the name is not empty, repeat this code
+    # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    @students << {name: name, cohort: :november}
+    info_to_students(name)
     puts "Now we have #{@students.count} students"
     # get another name from the user
     name = STDIN.gets.chomp
   end
+end
+
+def info_to_students(name, cohort = "november")
+  @students << {name: name, cohort: cohort.to_sym}
 end
 
 def show_students
@@ -90,7 +95,7 @@ def load_students
   file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+    info_to_students(name)
   end
   file.close
   puts "List of students loaded."
