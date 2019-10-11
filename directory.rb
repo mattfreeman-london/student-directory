@@ -75,17 +75,14 @@ def print_footer
 end
 
 def save_students
-  # open the file for writing
   puts "Please give a filename to save to:"
   filename = gets.chomp
-  file = File.open(filename, "w")
-  # iterate over the array of students
+  file = open(filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-  file.close
   puts "The new students have been added to the list."
 end
 
@@ -95,7 +92,7 @@ def load_students
   file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
-    info_to_students(name)
+    info_to_students(name, cohort)
   end
   file.close
   puts "List of students loaded."
@@ -105,14 +102,14 @@ def try_load_students
   if ARGV.first == nil
     filename = "students.csv"
   end
-  filename = ARGV.first# first argument from the command line
-  return if filename.nil? # get out of the method if it isn't given
-  if File.exists?(filename) # if it exists
+  filename = ARGV.first 
+  return if filename.nil? 
+  if File.exists?(filename) 
     load_students(filename)
      puts "Loaded #{@students.count} from #{filename}"
-  else # if it doesn't exist
+  else 
     puts "Sorry, #{filename} doesn't exist."
-    exit # quit the program
+    exit 
   end
 end
 
